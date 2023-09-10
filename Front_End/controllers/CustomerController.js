@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8080/back_end/";
+const BASE_URL = "http://localhost:8080/back-end/";
 
 //load all existing customers
 getAllCustomers();
