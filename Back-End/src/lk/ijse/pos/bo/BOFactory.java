@@ -1,5 +1,8 @@
 package lk.ijse.pos.bo;
 
+import lk.ijse.pos.bo.custom.impl.CustomerBOImpl;
+import lk.ijse.pos.bo.custom.impl.ItemBOImpl;
+
 public class BOFactory {
     private static BOFactory boFactory;
 
