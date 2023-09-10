@@ -1,7 +1,7 @@
 package lk.ijse.pos.filter;
 
 
-import lk.ijse.pos.servlet.util.ResponseUtil;
+
 import lk.ijse.pos.util.ResponseUtil;
 
 import javax.json.JsonObject;
