@@ -5,7 +5,7 @@ import lk.ijse.pos.bo.custom.PurchaseOrderBO;
 import lk.ijse.pos.dto.CustomerDTO;
 import lk.ijse.pos.dto.ItemDTO;
 import lk.ijse.pos.dto.OrderDTO;
-import lk.ijse.pos.dto.OrderDetailDTO;
+import lk.ijse.pos.dto.OrderDetailsDTO;
 import lk.ijse.pos.util.MessageUtil;
 
 import javax.json.*;
@@ -89,10 +89,10 @@ public class PurchaseOrderServlet extends HttpServlet {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/posapi", "root", "1234");
 
             String orderId = purchaseOrderBO.generateNewOrderID(connection);
-            List<OrderDetailDTO> orderDetails = new ArrayList<>();
+            List<OrderDetailsDTO> orderDetails = new ArrayList<>();
             for (JsonValue item : items) {
                 JsonObject jsonObject = item.asJsonObject();
-                orderDetails.add(new OrderDetailDTO(orderId, jsonObject.getString("code"), Double.parseDouble(jsonObject.getString("unitPrice")), Integer.parseInt(jsonObject.getString("qty"))));
+                orderDetails.add(new OrderDetailsDTO(orderId, jsonObject.getString("code"), Double.parseDouble(jsonObject.getString("unitPrice")), Integer.parseInt(jsonObject.getString("qty"))));
             }
             if (purchaseOrderBO.purchaseOrder(connection, new OrderDTO(orderId, cusId, total, LocalDate.now().toString(), orderDetails))) {
                 resp.setStatus(200);
