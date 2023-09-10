@@ -4,6 +4,7 @@ import lk.ijse.pos.bo.BOFactory;
 import lk.ijse.pos.bo.custom.CustomerBO;
 import lk.ijse.pos.dto.CustomerDTO;
 import lk.ijse.pos.util.MessageUtil;
+import lk.ijse.pos.util.ResponseUtil;
 
 import javax.json.*;
 import javax.servlet.ServletException;
@@ -12,9 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 @WebServlet(urlPatterns = "/customer")
