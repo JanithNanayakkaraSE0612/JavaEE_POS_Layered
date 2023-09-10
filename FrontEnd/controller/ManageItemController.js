@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:8080/backend/";
+const baseUrl = "http://localhost:8080/back-end/";
 
 loadAllItems();
 
