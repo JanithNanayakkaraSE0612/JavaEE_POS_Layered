@@ -10,6 +10,7 @@ import lk.ijse.pos.dto.CustomerDTO;
 import lk.ijse.pos.dto.ItemDTO;
 import lk.ijse.pos.dto.OrderDTO;
 import lk.ijse.pos.dto.OrderDetailsDTO;
+import lk.ijse.pos.entitiy.Customer;
 import lk.ijse.pos.entitiy.Item;
 import lk.ijse.pos.entitiy.Order;
 import lk.ijse.pos.entitiy.OrderDetails;
@@ -54,12 +55,14 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
 
     @Override
     public CustomerDTO searchCustomer(Connection connection, String id) throws SQLException, ClassNotFoundException {
-        return null;
+        Customer customer = customerDAO.search(connection, id);
+        return new CustomerDTO(customer.getCustomerId(), customer.getCustomerName(), customer.getAddress(), customer.getSalary());
     }
 
     @Override
     public ItemDTO searchItem(Connection connection, String code) throws SQLException, ClassNotFoundException {
-        return null;
+        Item item = itemDAO.search(connection, code);
+        return new ItemDTO(item.getCode(), item.getName(), item.getQty(), item.getPrice());
     }
 
     @Override
@@ -74,7 +77,7 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
 
     @Override
     public String generateNewOrderID(Connection connection) throws SQLException, ClassNotFoundException {
-        return null;
+        return orderDAO.generateNewOrderId(connection);
     }
 
     @Override
