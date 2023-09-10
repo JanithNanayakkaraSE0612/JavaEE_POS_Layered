@@ -1,8 +1,8 @@
 package lk.ijse.pos.controller;
 
 import lk.ijse.pos.bo.BOFactory;
-import lk.ijse.pos.bo.custom.OrderDetailBO;
-import lk.ijse.pos.dto.OrderDetailDTO;
+import lk.ijse.pos.bo.custom.OrderDetailsBO;
+import lk.ijse.pos.dto.OrderDetailsDTO;
 import lk.ijse.pos.util.MessageUtil;
 
 import javax.json.Json;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 @WebServlet(urlPatterns = "/order_detail")
 public class OrderDetailServlet extends HttpServlet {
-    OrderDetailBO orderDetailBO = (OrderDetailBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.ORDER_DETAILS);
+    OrderDetailsBO orderDetailBO = (OrderDetailsBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.ORDER_DETAILS);
     MessageUtil messageUtil = new MessageUtil();
 
     @Override
@@ -31,8 +31,8 @@ public class OrderDetailServlet extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/posapi", "root", "1234");
 
-            ArrayList<OrderDetailDTO> all = orderDetailBO.getAllOrderDetails(connection);
-            for (OrderDetailDTO detailDTO : all) {
+            ArrayList<OrderDetailsDTO> all = orderDetailBO.getAllOrderDetails(connection);
+            for (OrderDetailsDTO detailDTO : all) {
                 JsonObjectBuilder detail = Json.createObjectBuilder();
                 detail.add("orderId", detailDTO.getOrderId());
                 detail.add("code", detailDTO.getItemCode());

@@ -1,7 +1,5 @@
 #bodyImg {
-    background: url("../img/img1.jpeg");
-    background-size: cover;
-    background-position: right;
+    background-color:white;
 }
 
 main{
