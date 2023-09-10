@@ -27,7 +27,7 @@ public class ItemServlet extends HttpServlet {
         JsonArrayBuilder allItems = Json.createArrayBuilder();
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/posapi", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pos", "root", "1234");
 
             ArrayList<ItemDTO> items = itemBO.getAllItems(connection);
             for (ItemDTO item : items) {
@@ -59,7 +59,7 @@ public class ItemServlet extends HttpServlet {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/posapi", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pos", "root", "1234");
 
             if (itemBO.saveItem(connection, new ItemDTO(code, name, qty, price))) {
                 resp.setStatus(200);
@@ -77,7 +77,7 @@ public class ItemServlet extends HttpServlet {
         String code = req.getParameter("code");
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/posapi", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pos", "root", "1234");
 
             if (itemBO.deleteItems(connection, code)) {
                 resp.setStatus(200);
@@ -104,7 +104,7 @@ public class ItemServlet extends HttpServlet {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/posapi", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pos", "root", "1234");
             if (itemBO.updateItem(connection, new ItemDTO(code, name, qty, price))){
                 resp.setStatus(200);
                 resp.getWriter().print(messageUtil.buildJsonObject("OK", "Successfully Updated", "").build());

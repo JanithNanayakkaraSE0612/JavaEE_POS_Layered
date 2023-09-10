@@ -35,7 +35,7 @@ public class PurchaseOrderServlet extends HttpServlet {
 
         try {
             forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/posapi", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pos", "root", "1234");
 
             switch (option) {
                 case "customer":
@@ -86,7 +86,7 @@ public class PurchaseOrderServlet extends HttpServlet {
 
         try {
             forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/posapi", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pos", "root", "1234");
 
             String orderId = purchaseOrderBO.generateNewOrderID(connection);
             List<OrderDetailsDTO> orderDetails = new ArrayList<>();

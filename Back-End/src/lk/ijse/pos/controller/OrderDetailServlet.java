@@ -29,7 +29,7 @@ public class OrderDetailServlet extends HttpServlet {
         JsonArrayBuilder allOrderDetails = Json.createArrayBuilder();
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/posapi", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pos", "root", "1234");
 
             ArrayList<OrderDetailsDTO> all = orderDetailBO.getAllOrderDetails(connection);
             for (OrderDetailsDTO detailDTO : all) {
