@@ -28,7 +28,7 @@ public class CustomerServlet extends HttpServlet {
         JsonArrayBuilder allCustomers = Json.createArrayBuilder();
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/assignment", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pos", "root", "1234");
 
             ArrayList<CustomerDTO> all = customerBO.getAllCustomers(connection);
             for (CustomerDTO customerDTO : all) {
@@ -60,7 +60,7 @@ public class CustomerServlet extends HttpServlet {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/assignment", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pos", "root", "1234");
 
             if (customerBO.saveCustomer(connection, new CustomerDTO(cusId, cusName, cusAddress, cusSalary))) {
                 resp.setStatus(200);
@@ -80,7 +80,7 @@ public class CustomerServlet extends HttpServlet {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/assignment", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pos", "root", "1234");
 
             if (customerBO.deleteCustomer(connection, cusId)) {
                 resp.setStatus(200);
@@ -106,7 +106,7 @@ public class CustomerServlet extends HttpServlet {
         double cusSalary = Double.parseDouble(customer.getString("cusSalary"));
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/assignment", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pos", "root", "1234");
 
             if (customerBO.updateCustomer(connection, new CustomerDTO(cusId, cusName, cusAddress, cusSalary))) {
                 resp.setStatus(200);
