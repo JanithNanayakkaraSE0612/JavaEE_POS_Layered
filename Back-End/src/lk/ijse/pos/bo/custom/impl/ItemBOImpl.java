@@ -27,17 +27,18 @@ public class ItemBOImpl implements ItemBO, SuperBO {
 
     @Override
     public boolean deleteItems(Connection connection, String id) throws SQLException, ClassNotFoundException {
-        return false;
+        return itemDAO.delete(connection, id);
+
     }
 
     @Override
-    public boolean saveItem(Connection connection, ItemDTO itemDTO) throws SQLException, ClassNotFoundException {
-        return false;
+    public boolean saveItem(Connection connection, ItemDTO item) throws SQLException, ClassNotFoundException {
+        return itemDAO.save(connection, new Item(item.getCode(), item.getName(), item.getQtyOnHand(), item.getPrice()));
     }
 
     @Override
-    public boolean updateItem(Connection connection, ItemDTO itemDTO) throws SQLException, ClassNotFoundException {
-        return false;
+    public boolean updateItem(Connection connection, ItemDTO item) throws SQLException, ClassNotFoundException {
+        return itemDAO.update(connection, new Item(item.getCode(), item.getName(), item.getQtyOnHand(), item.getPrice()));
     }
 
     @Override
