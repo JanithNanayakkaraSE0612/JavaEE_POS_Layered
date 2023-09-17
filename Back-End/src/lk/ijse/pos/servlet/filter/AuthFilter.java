@@ -32,7 +32,7 @@ public class AuthFilter implements Filter {
         if (auth != null && auth.equals("user=admin,pass=admin")) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
-         
+
             res.addHeader("Content-Type", "application/json");
             res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 

@@ -11,8 +11,7 @@ import java.sql.SQLException;
 
 public class CrudUtil {
     public static <T> T setQuery(String sql, Object... args) throws SQLException, ClassNotFoundException {
-//        Class.forName("com.mysql.jdbc.Driver");
-//        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/company", "root", "1234");
+
         ServletContext servletContext = Listener.getServletContext();
         BasicDataSource dataSource = (BasicDataSource) servletContext.getAttribute("dbcp");
         Connection connection = dataSource.getConnection();
