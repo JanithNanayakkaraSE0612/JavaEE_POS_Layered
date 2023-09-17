@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-//So we have written down this class to apply the basic authentication
-//for our servlets, with this approach only peoples which know the password
-// can access the servlets, others will not be able to access
 
 @WebFilter(urlPatterns = "/*",filterName = "B",initParams = {@WebInitParam(name = "order", value = "2")})
 public class AuthFilter implements Filter {
@@ -29,7 +26,6 @@ public class AuthFilter implements Filter {
 
         System.out.println("Auth Filter Do Filter Invoked");
 
-        //Interrupt the request and check the Auth header with every request
         String auth = req.getHeader("Auth");
 
         //so, if the Auth header is present and username & password
