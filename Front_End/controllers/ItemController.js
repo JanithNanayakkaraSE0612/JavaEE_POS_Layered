@@ -3,7 +3,7 @@ getAllItems();
 
 //add item event
 $("#btnItem").click(function () {
-    if (checkAllItems()) {
+    if (checkAllItems()){
         saveItem();
     }
 
@@ -63,11 +63,12 @@ $("#btn-clear").click(function () {
 });
 
 
+
 // CRUD operation Functions
 function saveItem() {
     let itemCode = $("#itemCode").val();
     //check item is exists or not?
-    if (searchItem(itemCode.trim()) === undefined) {
+    if (searchItem(itemCode.trim()) == undefined) {
 
         //if the customer is not available then add him to the array
         let itemFormData = $("#itemForm").serialize();
@@ -75,8 +76,8 @@ function saveItem() {
             url: BASE_URL + "item",
             method: "post",
             data: itemFormData,
-            headers: {
-                Auth: "user=admin,pass=admin"
+            headers:{
+                Auth:"user=admin,pass=admin"
             },
             success: function (res) {
                 alert(res.message);
@@ -87,6 +88,8 @@ function saveItem() {
                 alert(error.responseJSON.message);
             }
         });
+
+
 
 
     } else {
@@ -100,12 +103,11 @@ function getAllItems() {
     $("#tblItem").empty();
 
     $.ajax({
-        url: BASE_URL + 'item',
+        url: BASE_URL+'item',
         dataType: "json",
-        headers: {
-            Auth: "user=admin,pass=admin"
+        headers:{
+            Auth:"user=admin,pass=admin"
         },
-
         success: function (response) {
             let items = response.data;
             for (let i in items) {
@@ -126,12 +128,13 @@ function getAllItems() {
 }
 
 
+
 function deleteItem(code) {
     $.ajax({
         url: BASE_URL + 'item?code=' + code,
         method: 'delete',
-        headers: {
-            Auth: "user=admin,pass=admin"
+        headers:{
+            Auth:"user=admin,pass=admin"
         },
         success: function (resp) {
             alert(resp.message);
@@ -157,12 +160,12 @@ function searchItem(code) {
             resp = items.find(function (item) {
                 //if the search id match with customer record
                 //then return that object
-                return item.code === code;
+                return item.code == code;
             });
 
         },
         error: function (error) {
-            resp = false;
+            resp=false;
             alert(error.responseJSON.message);
         }
     });
@@ -170,7 +173,7 @@ function searchItem(code) {
 }
 
 function updateItem(code) {
-    if (searchItem(code) === undefined) {
+    if (searchItem(code) == undefined) {
         alert("No such Item..please check the Code");
     } else {
         let consent = confirm("Do you really want to update this Item.?");
@@ -182,7 +185,7 @@ function updateItem(code) {
             let itemQty = $("#itemQty").val();
             let itemPrice = $("#itemPrice").val();
 
-            item.code = code;
+            item.code=code;
             item.description = itemName;
             item.qtyOnHand = itemQty;
             item.unitPrice = itemPrice;
@@ -190,8 +193,8 @@ function updateItem(code) {
             $.ajax({
                 url: BASE_URL + 'item',
                 method: 'put',
-                headers: {
-                    Auth: "user=admin,pass=admin"
+                headers:{
+                    Auth:"user=admin,pass=admin"
                 },
                 contentType: "application/json",
                 data: JSON.stringify(item),
