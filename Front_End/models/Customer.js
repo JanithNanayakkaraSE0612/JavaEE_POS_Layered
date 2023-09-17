@@ -1,5 +1,6 @@
 let customer={
     id:"",
     name:"",
-    address:""
+    address:"",
+    salary:0
 }
