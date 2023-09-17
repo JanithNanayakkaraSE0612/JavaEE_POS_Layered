@@ -3,10 +3,9 @@ package lk.ijse.pos.servlet.controller;
 
 import lk.ijse.pos.servlet.bo.BOTypes;
 import lk.ijse.pos.servlet.bo.FactoryBO;
-import lk.ijse.pos.servlet.bo.SuperBO;
 import lk.ijse.pos.servlet.bo.castom.impl.CustomerBOImpl;
 import lk.ijse.pos.servlet.dto.CustomerDTO;
-import lk.ijse.pos.servlet.util.ResponseUtil;
+import lk.ijse.pos.servlet.util.MessageUtil;
 
 import javax.json.*;
 import javax.servlet.ServletException;
@@ -37,10 +36,10 @@ public class CustomerServlet extends HttpServlet {
                 customerObject.add("salary", c.getSalary());
                 allCustomers.add(customerObject.build());
             }
-            resp.getWriter().print(ResponseUtil.genJson("Success", "Loaded", allCustomers.build()));
+            resp.getWriter().print(MessageUtil.genJson("Success", "Loaded", allCustomers.build()));
         } catch (ClassNotFoundException | SQLException e) {
             resp.setStatus(500);
-            resp.getWriter().print(ResponseUtil.genJson("Error", e.getMessage()));
+            resp.getWriter().print(MessageUtil.genJson("Error", e.getMessage()));
         }
     }
 
@@ -48,11 +47,11 @@ public class CustomerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             if (customerBO.addCustomer(new CustomerDTO(req.getParameter("cusID"),req.getParameter("cusName"),req.getParameter("cusAddress"),req.getParameter("cusSalary")))) {
-                resp.getWriter().print(ResponseUtil.genJson("Success", "Successfully Added.!"));
+                resp.getWriter().print(MessageUtil.genJson("Success", "Successfully Added.!"));
             }
         } catch (ClassNotFoundException | SQLException e) {
             resp.setStatus(500);
-            resp.getWriter().print(ResponseUtil.genJson("Error", e.getMessage()));
+            resp.getWriter().print(MessageUtil.genJson("Error", e.getMessage()));
         }
     }
 
@@ -61,13 +60,13 @@ public class CustomerServlet extends HttpServlet {
         JsonObject jsonObject = Json.createReader(req.getReader()).readObject();
         try {
             if (customerBO.updateCustomer(new CustomerDTO(jsonObject.getString("id"), jsonObject.getString("name"),jsonObject.getString("address"),jsonObject.getString("salary")))) {
-                resp.getWriter().print(ResponseUtil.genJson("Success", "Customer Updated..!"));
+                resp.getWriter().print(MessageUtil.genJson("Success", "Customer Updated..!"));
             } else {
-                resp.getWriter().print(ResponseUtil.genJson("Failed", "Customer Updated Failed..!"));
+                resp.getWriter().print(MessageUtil.genJson("Failed", "Customer Updated Failed..!"));
             }
         } catch (ClassNotFoundException | SQLException e) {
             resp.setStatus(500);
-            resp.getWriter().print(ResponseUtil.genJson("Error", e.getMessage()));
+            resp.getWriter().print(MessageUtil.genJson("Error", e.getMessage()));
         }
     }
 
@@ -75,13 +74,13 @@ public class CustomerServlet extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             if (customerBO.deleteCustomer(new CustomerDTO(req.getParameter("cusID")))) {
-                resp.getWriter().print(ResponseUtil.genJson("Success", "Customer Deleted..!"));
+                resp.getWriter().print(MessageUtil.genJson("Success", "Customer Deleted..!"));
             } else {
-                resp.getWriter().print(ResponseUtil.genJson("Failed", "Customer Delete Failed..!"));
+                resp.getWriter().print(MessageUtil.genJson("Failed", "Customer Delete Failed..!"));
             }
         } catch (ClassNotFoundException | SQLException e) {
             resp.setStatus(500);
-            resp.getWriter().print(ResponseUtil.genJson("Error", e.getMessage()));
+            resp.getWriter().print(MessageUtil.genJson("Error", e.getMessage()));
         }
     }
 }

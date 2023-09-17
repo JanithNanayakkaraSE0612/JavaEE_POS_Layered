@@ -5,7 +5,7 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
-public class ResponseUtil {
+public class MessageUtil {
     public static JsonObject genJson(String state, String message, JsonArray...data){
         JsonObjectBuilder object = Json.createObjectBuilder();
         object.add("state",state);

@@ -1,7 +1,7 @@
 package lk.ijse.pos.servlet.filter;
 
 
-import lk.ijse.pos.servlet.util.ResponseUtil;
+import lk.ijse.pos.servlet.util.MessageUtil;
 
 import javax.json.JsonObject;
 import javax.servlet.*;
@@ -36,7 +36,7 @@ public class AuthFilter implements Filter {
             res.addHeader("Content-Type", "application/json");
             res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 
-            JsonObject jsonObject = ResponseUtil.genJson("Auth-Error", "You are not Authenticated to use this Service.!");
+            JsonObject jsonObject = MessageUtil.genJson("Auth-Error", "You are not Authenticated to use this Service.!");
             res.getWriter().print(jsonObject);
         }
 

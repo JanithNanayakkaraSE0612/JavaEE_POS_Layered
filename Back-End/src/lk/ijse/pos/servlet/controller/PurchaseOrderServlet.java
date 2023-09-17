@@ -5,7 +5,7 @@ import lk.ijse.pos.servlet.bo.FactoryBO;
 import lk.ijse.pos.servlet.bo.castom.impl.OrderBOImpl;
 import lk.ijse.pos.servlet.dto.CustomDTO;
 import lk.ijse.pos.servlet.dto.ItemDTO;
-import lk.ijse.pos.servlet.util.ResponseUtil;
+import lk.ijse.pos.servlet.util.MessageUtil;
 
 import javax.json.*;
 import javax.servlet.ServletException;
@@ -40,10 +40,10 @@ public class PurchaseOrderServlet extends HttpServlet {
 
                 allOrders.add(orders.build());
             }
-            resp.getWriter().print(ResponseUtil.genJson("Success", "Loaded", allOrders.build()));
+            resp.getWriter().print(MessageUtil.genJson("Success", "Loaded", allOrders.build()));
         } catch (ClassNotFoundException | SQLException e) {
             resp.setStatus(500);
-            resp.getWriter().print(ResponseUtil.genJson("Error", e.getMessage()));
+            resp.getWriter().print(MessageUtil.genJson("Error", e.getMessage()));
         }
     }
 
@@ -82,14 +82,14 @@ public class PurchaseOrderServlet extends HttpServlet {
 
 
             if (orderBO.purchaseOrder(customDTO)) {
-                resp.getWriter().print(ResponseUtil.genJson("Success", "Successfully Added.!"));
+                resp.getWriter().print(MessageUtil.genJson("Success", "Successfully Added.!"));
             }else {
-                resp.getWriter().print(ResponseUtil.genJson("Error", "Error"));
+                resp.getWriter().print(MessageUtil.genJson("Error", "Error"));
             }
 
         } catch (ClassNotFoundException | SQLException e) {
             resp.setStatus(500);
-            resp.getWriter().print(ResponseUtil.genJson("Error", e.getMessage()));
+            resp.getWriter().print(MessageUtil.genJson("Error", e.getMessage()));
         }
     }
 }
